@@ -3,7 +3,7 @@ import "./index.css"
 
 function API_1() {
   const [users, setUser] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const[search,setSearch] = useState("")
 
   
 
@@ -12,27 +12,30 @@ function API_1() {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-        setLoading(false)
+        
       });
   }, []);
+
+  const filteredUsers = users.filter((user)=>
+    user.name.toLowerCase().includes(search.toLocaleLowerCase())
+
+)
 
   return (
     <div>
 
       <h1>user info</h1>
-      { loading ? ( <div className="loader"></div> ) : (
-      
-      
-      users.map((user) => (
-        <div key={user.id}>
+      <input type="text" placeholder="Search User" onChange={(e)=> setSearch(e.target.value)} />
+      {
+        filteredUsers.map((user)=>(
+            <div key={user.id}>
 
-            <h2>Name: {user.name}</h2>
-            <h2>Email: {user.email}</h2>
-            <h2>Phone: {user.phone}</h2>
+                <h2>{user.name}</h2>
 
-            <hr />
-        </div>
-      )))}
+                </div>
+        ))
+      }
+   
     </div>
   );
 }
