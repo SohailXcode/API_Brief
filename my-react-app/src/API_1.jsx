@@ -1,43 +1,82 @@
 import { useEffect, useState } from "react";
 import "./index.css"
 
-function API_1() {
-  const [users, setUser] = useState([]);
-  const[search,setSearch] = useState("")
+function App() {
 
-  
+  // Store users data
+  const [users, setUsers] = useState([]);
 
+  // Store search input
+  const [search, setSearch] = useState("");
+
+  // Loading state
+  const [loading, setLoading] = useState(true);
+
+  // API call
   useEffect(() => {
+
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => {
-        setUser(data);
-        
+
+        // Store API data
+        setUsers(data);
+
+        // Stop loading
+        setLoading(false);
+
       });
+
   }, []);
 
-  const filteredUsers = users.filter((user)=>
-    user.name.toLowerCase().includes(search.toLocaleLowerCase())
-
-)
+  // Filter users based on search
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
+
     <div>
 
-      <h1>user info</h1>
-      <input type="text" placeholder="Search User" onChange={(e)=> setSearch(e.target.value)} />
+      <h1>User Search App</h1>
+
+      {/* Search Input */}
+      <input
+        type="text"
+        placeholder="Search User"
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
       {
-        filteredUsers.map((user)=>(
+        loading ? (
+
+          <div className="loader"></div>
+
+        ) : (
+
+          // Print Users
+          filteredUsers.map((user) => (
+
             <div key={user.id}>
 
-                <h2>{user.name}</h2>
+              <h2>Name: {user.name}</h2>
 
-                </div>
-        ))
+              <h3>Email: {user.email}</h3>
+
+              <h3>Phone: {user.phone}</h3>
+
+              <hr />
+
+            </div>
+
+          ))
+
+        )
       }
-   
+
     </div>
+
   );
 }
 
-export default API_1;
+export default App;
