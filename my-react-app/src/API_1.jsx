@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css"
+import "./App.css"
 
 function App() {
 
@@ -36,12 +37,12 @@ function App() {
 
   return (
 
-    <div>
+    <div className="container">
 
-      <h1>User Search App</h1>
+      <h1 className="title">User Search App</h1>
 
       {/* Search Input */}
-      <input
+      <input className="search-input"
         type="text"
         placeholder="Search User"
         onChange={(e) => setSearch(e.target.value)}
@@ -57,7 +58,7 @@ function App() {
           // Print Users
           filteredUsers.map((user) => (
 
-            <div key={user.id}>
+            <div className="user-card" key={user.id}>
 
               <h2>Name: {user.name}</h2>
 

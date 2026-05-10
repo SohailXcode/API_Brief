@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+}
+
+.search-input {
+
+  width: 100%;
+  padding: 12px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  font-size: 16px;
+}
+
+.user-card {
+
+  background-color: white;
+
+  padding: 15px;
+
+  margin-bottom: 15px;
+
+  border-radius: 10px;
+
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+
+}
+
+.user-card h2 {
+  color: #222;
+}
+
+.user-card h3 {
+  color: #555;
+  font-weight: normal;
+}
+
+.loader {
+
+  width: 50px;
+  height: 50px;
+
+  border: 5px solid lightgray;
+  border-top: 5px solid blue;
+
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+
+  margin: 30px auto;
+
+}
+
+@keyframes spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
